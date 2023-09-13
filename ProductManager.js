@@ -97,7 +97,7 @@ console.log(productManager.getProducts());
 console.log(productManager.getProductById(1));
 
 // Actualizar
-productManager.updateProduct(1, { price: 24.99 });
+productManager.updateProduct(1, { price: 2499 });
 console.log(productManager.getProductById(1));
 
 // Eliminar
