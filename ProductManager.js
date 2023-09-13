@@ -96,10 +96,10 @@ productManager.addProduct({
 console.log(productManager.getProducts());
 console.log(productManager.getProductById(1));
 
-// Actualizar
+
 productManager.updateProduct(1, { price: 2499 });
 console.log(productManager.getProductById(1));
 
-// Eliminar
+
 productManager.deleteProduct(2);
 console.log(productManager.getProducts());
