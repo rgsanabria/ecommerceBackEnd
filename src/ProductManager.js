@@ -103,3 +103,37 @@ console.log(productManager.getProductById(1));
 
 productManager.deleteProduct(2);
 console.log(productManager.getProducts());
+
+
+const express = require("express");
+const ProductManager = require("./ProductManager");
+
+const app = express();
+const PORT = 8080;
+
+app.use(express.json());
+
+const ProductManager = new ProductManager("products.json");
+
+app.get("/products", (req, res) => {
+  const { limit } = req.query;
+  const products = productManager.getProducts();
+  if (limit) {
+    res.json(products.slice(0, parseInt(limit)));
+  } else {
+    res.json(products);
+  }
+});
+
+app.get("/products/:pid", (req, res) => {
+  try {
+    const product = productManager.getProductById(parseInt(req.params.pid));
+    res.json(product);
+  } catch (error) {
+    res.status(404).json({ error: "Producto no encontrado" });
+  }
+});
+
+app.listen(PORT, () => {
+  console.log(`Servidor escuchando en el puerto ${PORT}`);
+});
